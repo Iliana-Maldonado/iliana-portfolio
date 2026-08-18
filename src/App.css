@@ -1,0 +1,574 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Pixelify+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+  --forest: #26351e;
+  --forest-light: #35452b;
+  --cream: #f7e8c6;
+  --pink: #d98f86;
+  --brown: #6d4a35;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Mono", monospace;
+}
+
+button {
+  font-family: inherit;
+}
+
+.desktop {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      rgba(38, 53, 30, 0.12),
+      rgba(38, 53, 30, 0.12)
+    ),
+    url("/images/lighthouse-bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  padding-top: 48px;
+  padding-bottom: 52px;
+}
+
+/* TOP BAR */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 48px;
+
+  background: rgba(38, 53, 30, 0.98);
+
+  color: var(--cream);
+
+  display: flex;
+  align-items: center;
+  gap: 24px;
+
+  padding: 0 20px;
+
+  border-bottom: 2px solid #9f7955;
+
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 18px;
+}
+
+.brand span {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.top-message {
+  flex: 1;
+  color: #f2b7ad;
+  font-family: "Pixelify Sans", sans-serif;
+}
+
+.top-status {
+  display: flex;
+  gap: 16px;
+  font-size: 10px;
+}
+
+/* DESKTOP */
+
+.desktop-body {
+  min-height: calc(100vh - 100px);
+  padding: 26px;
+}
+
+.desktop-icons {
+  position: fixed;
+  left: 16px;
+  top: 70px;
+
+  width: 95px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  z-index: 10;
+}
+
+.desktop-icon {
+  border: none;
+  background: transparent;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 10px;
+
+  cursor: pointer;
+
+  text-shadow:
+    1px 1px #2f3d26,
+    -1px -1px #2f3d26;
+}
+
+.desktop-icon-image {
+  font-size: 34px;
+
+  filter: drop-shadow(2px 3px 2px rgba(0, 0, 0, 0.25));
+
+  transition: transform 0.15s ease;
+}
+
+.desktop-icon:hover .desktop-icon-image {
+  transform: translateY(-3px) scale(1.06);
+}
+
+.workspace {
+  margin-left: 120px;
+  min-height: 70vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TUTORIAL WINDOW */
+
+.tutorial-window {
+  width: min(720px, 92%);
+  max-height: calc(100vh - 140px);
+
+  background: var(--cream);
+
+  border: 2px solid var(--forest);
+
+  box-shadow:
+    7px 8px 0 rgba(38, 53, 30, 0.38),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+
+  border-radius: 4px;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.window-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  flex: 1;
+}
+
+.tutorial-header {
+  height: 44px;
+
+  background: #d7cf91;
+
+  border-bottom: 2px solid var(--forest);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 16px;
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 18px;
+
+  color: var(--forest);
+}
+
+.tutorial-controls {
+  display: flex;
+  height: 100%;
+}
+
+.tutorial-controls button {
+  width: 38px;
+
+  border: 0;
+  border-left: 1px solid var(--forest);
+
+  background: #ede3bd;
+
+  color: var(--forest);
+
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+.tutorial-controls button:last-child {
+  background: #d98f86;
+}
+
+.tutorial-content {
+  position: relative;
+  padding: 34px 38px 30px;
+  min-height: 400px;
+
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 20px;
+}
+
+.tutorial-text h2 {
+  margin-top: 0;
+
+  color: #c86f6b;
+
+  font-family: "Pixelify Sans", sans-serif;
+
+  font-size: 24px;
+}
+
+.tutorial-text p {
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  margin-bottom: 20px;
+}
+
+.tutorial-text hr {
+  border: 0;
+  border-top: 2px dashed #dfa7a1;
+
+  margin: 24px 0;
+}
+
+.tutorial-start strong {
+  background: #f2c9c4;
+
+  padding: 3px 7px;
+
+  border: 1px solid #d59a92;
+}
+
+/* LITTLE COMPUTER */
+
+.tutorial-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: visible;
+}
+
+.pixel-computer {
+  width: 300px;
+  max-width: 300%;
+  height: auto;
+
+  display: block;
+
+  /* izquierda/derecha | arriba/abajo */
+  transform: translate(-45px, -35px);
+
+  object-fit: contain;
+
+  filter: drop-shadow(
+    5px 6px 3px rgba(38, 53, 30, 0.18)
+  );
+}
+
+
+/* NEXT BUTTON */
+
+.window-button {
+  padding: 12px 26px;
+
+  background: #cf7d7d;
+  color: white;
+
+  border: 2px solid var(--forest);
+  box-shadow: 3px 3px 0 var(--forest);
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 18px;
+
+  cursor: pointer;
+}
+
+.window-button:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--forest);
+}
+
+
+/* NEXT BUTTON */
+
+.next-button {
+  position: absolute;
+  right: 34px;
+  bottom: 26px;
+}
+
+.next-button:hover {
+  transform: translate(2px, 2px);
+
+  box-shadow: 1px 1px 0 var(--forest);
+}
+
+/* ABOUT ME */
+
+.about-content {
+  padding: 34px 38px 30px;
+}
+
+.about-info {
+  max-width: 620px;
+}
+
+.about-info h2 {
+  margin-top: 0;
+  margin-bottom: 22px;
+
+  color: #c86f6b;
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 24px;
+}
+
+.about-info p {
+  font-size: 13px;
+  line-height: 1.7;
+
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.about-tags span {
+  padding: 6px 9px;
+  background: #f2c9c4;
+  border: 1px solid #d59a92;
+  font-size: 10px;
+}
+
+.about-actions {
+  grid-column: 1 / -1;
+
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 14px;
+
+  margin-top: 26px;
+}
+
+.about-profile {
+  display: none;
+}
+
+/* SKILLS */
+
+.tag-group {
+  margin-top: 24px;
+}
+
+.tag-group h3 {
+  margin: 0 0 12px;
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 18px;
+
+  color: var(--forest);
+}
+
+.tag-group .about-tags {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+/* TASKBAR */
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  height: 52px;
+
+  background: rgba(38, 53, 30, 0.98);
+
+  border-top: 2px solid #9f7955;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 6px 12px;
+
+  color: var(--cream);
+
+  z-index: 100;
+}
+
+.start-button {
+  height: 36px;
+
+  padding: 0 15px;
+
+  background: var(--forest-light);
+  color: var(--cream);
+
+  border: 1px solid #a98b65;
+
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 14px;
+
+  cursor: pointer;
+}
+
+.taskbar-spacer {
+  flex: 1;
+}
+
+.taskbar span {
+  font-size: 20px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+  /* TOP BAR */
+
+  .top-status,
+  .top-message {
+    display: none;
+  }
+
+
+  /* DESKTOP */
+
+  .desktop-body {
+    padding: 18px 12px;
+  }
+
+
+  /* ICONS */
+
+  .desktop-icons {
+    position: static;
+
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 22px;
+  }
+
+  .desktop-icon {
+    width: 100%;
+  }
+
+  .desktop-icon-image {
+    font-size: 32px;
+  }
+
+
+  /* WORKSPACE */
+
+  .workspace {
+    margin-left: 0;
+    width: 100%;
+  }
+
+
+  /* WINDOW */
+
+  .tutorial-window {
+    width: 100%;
+  }
+
+  .tutorial-content {
+    grid-template-columns: 1fr;
+
+    padding: 24px;
+  }
+
+
+  /* COMPUTER */
+
+  .tutorial-decoration {
+    min-height: 180px;
+  }
+
+  .pixel-computer {
+    width: 300px;
+    max-width: 200%;
+    height: auto;
+
+    display: block;
+
+    margin: 0 auto;
+
+    transform: translate(0, -10px);
+
+    object-fit: contain;
+
+    filter: drop-shadow(
+      5px 6px 3px rgba(38, 53, 30, 0.18)
+    );
+  }
+
+
+  /* NEXT BUTTON */
+
+  .next-button {
+    position: static;
+
+    width: 100%;
+
+    margin-top: 35px;
+  }
+
+.about-actions {
+  position: static;
+  grid-column: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  margin-top: 20px;
+}
+
+.about-actions .window-button {
+  width: 100%;
+}
+}
