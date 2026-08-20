@@ -1,4 +1,7 @@
 import { useState } from "react";
+import experiences from "./data/experiences";
+import projects from "./data/projects";
+import ProjectCard from "./components/ProjectCard";
 import "./App.css";
 
 /* DESKTOP ICON */
@@ -48,10 +51,30 @@ function TagGroup({ title, children }) {
   );
 }
 
+/* EXPERIENCE FOLDER */
+
+function ExperienceFolder({ company, period, role, onClick }) {
+  return (
+    <button className="experience-folder"onClick={onClick}>
+      <span className="experience-folder-icon">📁</span>
+
+      <span className="experience-folder-info">
+        <strong>
+          {company} · {period}
+        </strong>
+
+        <small>{role}</small>
+      </span>
+    </button>
+  );
+}
+
 /* APP */
 
 function App() {
   const [activeWindow, setActiveWindow] = useState("welcome");
+  const [selectedExperience, setSelectedExperience] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   /* CONTENT THAT CHANGES INSIDE THE SAME WINDOW */
 
@@ -185,41 +208,163 @@ case "about":
 
       /* PROJECTS */
 
-      case "projects":
-        return (
-          <PortfolioWindow
-            title="🧺 projects.exe"
-            onClose={() => setActiveWindow(null)}
-          >
-            <div className="tutorial-content">
-              <div className="tutorial-text">
-                <h2>Selected Projects 🌸</h2>
+case "projects":
+  return (
+    <PortfolioWindow
+      title="🧺 projects.exe"
+      onClose={() => setActiveWindow(null)}
+    >
+      <div className="projects-content">
 
-                <p>VenueFlow</p>
-                <p>Polaris</p>
-                <p>Office Depot México</p>
+        <div className="experience-path">
+          <button
+            className="experience-path-home"
+            onClick={() => setSelectedProject(null)}
+          >
+            🏠 Projects
+          </button>
+
+          {selectedProject && (
+            <>
+              <span>›</span>
+              <strong>{selectedProject.title}</strong>
+            </>
+          )}
+        </div>
+
+        {!selectedProject ? (
+          <>
+            <div className="tutorial-text">
+              <h2>Selected Projects 🌸</h2>
+
+              <p>
+                A collection of projects across design,
+                development and illustration.
+              </p>
+            </div>
+
+            <div className="projects-grid">
+              {projects.map((project) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  onClick={() => setSelectedProject(project)}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="project-detail">
+            <div className="tutorial-text">
+              <h2>{selectedProject.title}</h2>
+
+              <p>
+                <strong>{selectedProject.type}</strong>
+              </p>
+
+              <p>
+                🗓️ {selectedProject.year}
+              </p>
+
+              <div className="about-tags">
+                {selectedProject.category
+                  .split(" · ")
+                  .map((category) => (
+                    <span key={category}>
+                      {category}
+                    </span>
+                  ))}
               </div>
             </div>
-          </PortfolioWindow>
-        );
+          </div>
+        )}
 
-      /* EXPERIENCE */
+      </div>
+    </PortfolioWindow>
+  );
 
-      case "experience":
-        return (
-          <PortfolioWindow
-            title="🍄 experience.exe"
-            onClose={() => setActiveWindow(null)}
+/* EXPERIENCE */
+
+case "experience":
+  return (
+    <PortfolioWindow
+      title="🍄 experience.exe"
+      onClose={() => setActiveWindow(null)}
+    >
+      <div className="experience-content">
+
+        <div className="experience-path">
+          <button
+            className="experience-path-home"
+            onClick={() => setSelectedExperience(null)}
           >
-            <div className="tutorial-content">
-              <div className="tutorial-text">
-                <h2>Experience 🍄</h2>
+            🏠 Experience
+          </button>
 
-                <p>My professional journey will live here.</p>
-              </div>
+          {selectedExperience && (
+            <>
+              <span>›</span>
+              <strong>{selectedExperience.company}</strong>
+            </>
+          )}
+        </div>
+
+        {!selectedExperience ? (
+          <>
+            <div className="tutorial-text">
+              <h2>My Experience 🍄</h2>
+
+              <p>
+                A little archive of the places that shaped my
+                professional journey.
+              </p>
             </div>
-          </PortfolioWindow>
-        );
+
+            <div className="experience-folders">
+              {experiences.map((experience) => (
+                <ExperienceFolder
+                  key={experience.id}
+                  company={experience.company}
+                  period={experience.period}
+                  role={experience.role}
+                  onClick={() => setSelectedExperience(experience)}
+                />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="experience-detail">
+  <div className="tutorial-text">
+    <h2>{selectedExperience.company}</h2>
+
+    <p>
+      <strong>{selectedExperience.role}</strong>
+    </p>
+
+    <p>
+      📍 {selectedExperience.location}
+      <br />
+      🗓️ {selectedExperience.period}
+    </p>
+
+    <p>
+      {selectedExperience.description}
+    </p>
+
+    <hr />
+
+    <div className="about-tags">
+      {selectedExperience.skills.map((skill) => (
+        <span key={skill}>{skill}</span>
+      ))}
+    </div>
+  </div>
+</div>
+        )}
+
+      </div>
+    </PortfolioWindow>
+  );
 
       /* SKILLS */
 
