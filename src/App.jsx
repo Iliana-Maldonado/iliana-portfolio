@@ -2,6 +2,7 @@ import { useState } from "react";
 import experiences from "./data/experiences";
 import projects from "./data/projects";
 import ProjectCard from "./components/ProjectCard";
+import ClockWidget from "./components/ClockWidget";
 import "./App.css";
 
 /* DESKTOP ICON */
@@ -151,18 +152,25 @@ case "about":
           <h2>Hello, I'm Iliana! 🌷</h2>
 
           <p>
-            Frontend Developer & UX/UI Designer based in Dublin,
-            Ireland.
+            Frontend Developer & UX/UI Designer 
+            <br />
+            based in Dublin, Ireland.
           </p>
 
           <p>
-            I love combining design, technology and creative
-            problem-solving to build thoughtful digital experiences.
+            I love combining design, technology 
+            <br />
+            and creative problem-solving to build 
+            <br />
+            thoughtful digital experiences.
           </p>
 
           <p>
-            I enjoy turning complex ideas into thoughtful,
-            intuitive and beautiful digital experiences.
+            I enjoy turning complex ideas 
+            <br />
+            into intuitive, meaningful and 
+            <br />
+            beautiful digital experiences.
           </p>
 
           <p>
@@ -183,8 +191,8 @@ case "about":
 
         <div className="tutorial-decoration">
           <img
-            src="/images/pixel-computer.png"
-            alt="Cute vintage computer"
+            src="/images/iliana-profile.png"
+            alt="Iliana Maldonado"
             className="pixel-computer"
           />
         </div>
@@ -197,9 +205,10 @@ case "about":
             View Projects →
           </button>
 
-          <button className="window-button">
-            Download CV ↓
-          </button>
+          <a className="window-button"href="/files/Iliana-Maldonado-CV.pdf"
+          download>
+          Download CV ↓
+          </a>
         </div>
 
       </div>
@@ -255,28 +264,68 @@ case "projects":
           </>
         ) : (
           <div className="project-detail">
-            <div className="tutorial-text">
-              <h2>{selectedProject.title}</h2>
+  <div className="tutorial-text">
+    <h2>{selectedProject.title}</h2>
 
-              <p>
-                <strong>{selectedProject.type}</strong>
-              </p>
+    <p>
+      <strong>{selectedProject.type}</strong>
+      <br />
+      🗓️ {selectedProject.year}
+    </p>
 
-              <p>
-                🗓️ {selectedProject.year}
-              </p>
+    <p>
+      {selectedProject.description}
+    </p>
 
-              <div className="about-tags">
-                {selectedProject.category
-                  .split(" · ")
-                  .map((category) => (
-                    <span key={category}>
-                      {category}
-                    </span>
-                  ))}
-              </div>
-            </div>
-          </div>
+    <hr />
+
+    <TagGroup title="✨ Project Focus">
+      {selectedProject.category
+        .split(" · ")
+        .map((category) => (
+          <span key={category}>
+            {category}
+          </span>
+        ))}
+    </TagGroup>
+
+    <TagGroup title="💻 Tools & Technologies">
+      {selectedProject.technologies.map((technology) => (
+        <span key={technology}>
+          {technology}
+        </span>
+      ))}
+    </TagGroup>
+    {selectedProject.github && (
+  <div className="project-actions">
+    <button
+      className="window-button"
+      onClick={() =>
+        window.open(selectedProject.github, "_blank")
+      }
+    >
+      View on GitHub ↗
+    </button>
+  </div>
+)}
+
+{selectedProject.gallery?.length > 0 && (
+  <div className="project-gallery">
+    <h3>🌷 Project Gallery</h3>
+
+    <div className="project-gallery-grid">
+      {selectedProject.gallery.map((image, index) => (
+        <img
+          key={image}
+          src={image}
+          alt={`${selectedProject.title} project ${index + 1}`}
+        />
+      ))}
+    </div>
+  </div>
+)}
+  </div>
+</div>
         )}
 
       </div>
@@ -410,6 +459,46 @@ case "skills":
             <span>Spanish</span>
             <span>English</span>
           </TagGroup>
+
+          <hr className="skills-divider" />
+
+<div className="education-section">
+  <h3>🎓 Education</h3>
+
+  <div className="education-list">
+
+    <div className="education-item">
+      <div className="education-icon">💻</div>
+
+      <div className="education-info">
+        <h4>Higher Diploma in Science in Computing</h4>
+        <p>National College of Ireland</p>
+        <span>2025 — 2026</span>
+      </div>
+    </div>
+
+    <div className="education-item">
+      <div className="education-icon">📱</div>
+
+      <div className="education-info">
+        <h4>Master in UX/UI Multidevice</h4>
+        <p>ESDESIGN Barcelona</p>
+        <span>2019 — 2020</span>
+      </div>
+    </div>
+
+    <div className="education-item">
+      <div className="education-icon">🎨</div>
+
+      <div className="education-info">
+        <h4>Design</h4>
+        <p>Universidad Autónoma de San Luis Potosí</p>
+        <span>2012 — 2017</span>
+      </div>
+    </div>
+
+  </div>
+</div>
         </div>
       </div>
     </PortfolioWindow>
@@ -417,21 +506,79 @@ case "skills":
 
       /* CONTACT */
 
-      case "contact":
-        return (
-          <PortfolioWindow
-            title="🌷 contact.exe"
-            onClose={() => setActiveWindow(null)}
-          >
-            <div className="tutorial-content">
-              <div className="tutorial-text">
-                <h2>Let's create something beautiful 💌</h2>
+case "contact":
+  return (
+    <PortfolioWindow
+      title="🌷 contact.exe"
+      onClose={() => setActiveWindow(null)}
+    >
+      <div className="contact-content">
 
-                <p>Contact information will live here.</p>
-              </div>
+        <div className="tutorial-text">
+          <h2>Let's create something beautiful 💌</h2>
+
+          <p>
+            I'm always happy to connect about design,
+            development and creative opportunities.
+          </p>
+
+          <p>
+            Feel free to reach out — I'd love to hear from you! 🌷
+          </p>
+        </div>
+
+        <div className="contact-links">
+
+          <div className="contact-item">
+            <div className="contact-icon">💌</div>
+
+            <div className="contact-info">
+              <span>Email</span>
+              <strong>iliana.malibily@gmail.com</strong>
             </div>
-          </PortfolioWindow>
-        );
+
+            <button
+              className="window-button contact-button"
+              onClick={() =>
+                window.location.href =
+                  "mailto:iliana.malibily@gmail.com"
+              }
+            >
+              Send Email ↗
+            </button>
+          </div>
+
+          <div className="contact-item">
+            <div className="contact-icon">💼</div>
+
+            <div className="contact-info">
+              <span>LinkedIn</span>
+              <strong>Iliana Maldonado Ibarra</strong>
+            </div>
+
+            <button
+              className="window-button contact-button"
+              onClick={() =>
+                window.open(
+                  "https://www.linkedin.com/in/iliana-maldonado-ibarra/",
+                  "_blank"
+                )
+              }
+            >
+              Connect ↗
+            </button>
+          </div>
+
+        </div>
+
+        <div className="contact-footer">
+          <span>📍 Dublin, Ireland</span>
+          <span>✨ Available for opportunities</span>
+        </div>
+
+      </div>
+    </PortfolioWindow>
+  );
 
       default:
         return null;
@@ -503,6 +650,9 @@ case "skills":
             }
           />
         </aside>
+
+      {/* CLOCK WIDGET */}
+<ClockWidget />
 
         {/* ONLY ONE WINDOW LIVES HERE */}
 

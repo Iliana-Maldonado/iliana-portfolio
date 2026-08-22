@@ -2,7 +2,7 @@ const experiences = [
   {
     id: "arlington",
     company: "Arlington Hotel",
-    period: "2025 — Present",
+    period: "2024 — 2026",
     role: "Senior Waitress",
     location: "Dublin, Ireland",
     description:
@@ -20,7 +20,7 @@ const experiences = [
     id: "polaris",
     company: "Polaris",
     period: "2021 — 2024",
-    role: "UX/UI Designer",
+    role: "Web Designer / UX/UI Designer ",
     location: "Remote",
     description:
       "Worked across UX/UI and digital product design, creating interfaces, user flows and visual solutions for different projects and launches.",
@@ -38,7 +38,7 @@ const experiences = [
   id: "office-depot",
   company: "Office Depot México",
   period: "2020 — 2021",
-  role: "Web / Visual Designer",
+  role: "Web Designer / Visual Designer",
   location: "Mexico City, Mexico",
   description:
     "Created digital and visual design work across several brands and e-commerce experiences.",
